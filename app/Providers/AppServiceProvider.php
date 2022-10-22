@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         App::setLocale('id');
+
+        Schema::defaultStringLength(191);
         
         RedirectResponse::macro('success', function ($message) {
             Session::flash('success', $message);
