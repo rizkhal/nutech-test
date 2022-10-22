@@ -13,7 +13,7 @@ class ProductTable extends Inertable
 {
     public function query(): Builder
     {
-        return Product::query();
+        return Product::query()->when(!$this->hasSort(), fn ($query) => $query->orderBy('created_at', 'desc'));
     }
 
     public function columns(): array
